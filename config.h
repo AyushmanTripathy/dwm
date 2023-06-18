@@ -22,7 +22,7 @@ static char *colors[][3] = {
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "", "", "", "", "" };
+static const char *tags[] = { "", "", "", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -72,11 +72,15 @@ static Key keys[] = {
 	{ MODKEY,                       XK_w,      spawn,          SHCMD("wifi")},
 	{ MODKEY,                       XK_b,      spawn,          SHCMD("bluetooth")},
 	{ MODKEY,                       XK_c,      spawn,          SHCMD("saveclip -s")},
-	{ 0,                            XK_F2,      spawn,         SHCMD("brightness -d 100")},
-	{ 0,                            XK_F3,      spawn,         SHCMD("brightness -i 100")},
-	{ 0,                            XK_F7,      spawn,         SHCMD("set-volume 0.05-")},
-	{ 0,                            XK_F8,      spawn,         SHCMD("set-volume 0.05+")},
-	{ 0,                            XK_F5,      spawn,         SHCMD("get-info")},
+	{ 0,                            XK_F1,     spawn,          SHCMD("get-info")},
+	{ 0,                            XK_F2,     spawn,          SHCMD("brightness -d 100")},
+	{ 0,                            XK_F3,     spawn,          SHCMD("brightness -i 100")},
+	{ 0,                            XK_F6,     spawn,          SHCMD("set-volume 0.0")},
+	{ 0,                            XK_F7,     spawn,          SHCMD("set-volume 0.05-")},
+	{ 0,                            XK_F8,     spawn,          SHCMD("set-volume 0.05+")},
+	{ 0,                            XK_F9,     spawn,          SHCMD("moc -n")},
+	{ 0,                            XK_F10,    spawn,          SHCMD("moc -p")},
+	{ 0,                            XK_F12,    spawn,          SHCMD("slock")},
 	{ MODKEY|ShiftMask,             XK_Left,   setmfact,       {.f = -0.05} },
 	{ MODKEY|ShiftMask,             XK_Right,  setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Left,   focusstack,     {.i = -1 } },
