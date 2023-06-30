@@ -59,7 +59,7 @@ static const Layout layouts[] = {
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
- 
+
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont};
@@ -88,12 +88,12 @@ static Keychord keychords[] = {
 	{2, {{ MODKEY, XK_l },         { 0, XK_f }},      setlayout,      {.v = &layouts[1]} },
 	{2, {{ MODKEY, XK_l },         { 0, XK_m }},      setlayout,      {.v = &layouts[2]} },
 	{2, {{ MODKEY, XK_l },         { 0, XK_t }},      setlayout,      {.v = &layouts[0]} },
-	{1, {{ MODKEY, XK_l },         { 0, XK_h }},      incnmaster,     {.i = -1 } },
-	{1, {{ MODKEY, XK_l },         { 0, XK_v }},      incnmaster,     {.i = +1 } },
 	{2, {{ MODKEY, XK_l },         { 0, XK_x }},  	  togglefloating, {0} },
+	{2, {{ MODKEY, XK_l },         { 0, XK_h }},      incnmaster,     {.i = -1 } },
+	{2, {{ MODKEY, XK_l },         { 0, XK_v }},      incnmaster,     {.i = +1 } },
 
 	{1, {{ MODKEY,                 XK_g  }},          togglebar,      {0} },
-	{1, {{ Mod1Mask,                   XK_Tab  }},	      zoom,           {0} },
+	{1, {{ Mod1Mask,               XK_Tab  }},	      zoom,           {0} },
   {1, {{ MODKEY,                 XK_d  }},          setmfact,       {.f = -0.05} },
 	{1, {{ MODKEY,		             XK_q  }},          killclient,     {0} },
 
