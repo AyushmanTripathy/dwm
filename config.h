@@ -29,7 +29,7 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class                instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
-	{ "TelegramDesktop",    NULL,     NULL,           0,         1,          0,           0,        -1 },
+	{ "TelegramDesktop",    NULL,     NULL,           0,         0,          0,           0,        -1 },
 	{ "obs",                NULL,     NULL,           0,         1,          0,           0,        -1 },
 	{ "Lutris",             NULL,     NULL,           0,         1,          0,           0,        -1 },
 	{ "firefox",   		      NULL,     NULL,           1 << 2,    0,          0,          -1,        -1 },
@@ -63,8 +63,8 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont};
-static const char *termcmd[]  = { "st", NULL };
-static const char *browsercmd[]  = { "google-chrome-stable", NULL };
+static const char *termcmd[]  = { "alacritty", NULL };
+static const char *browsercmd[]  = { "chromium", NULL };
    
 static Keychord keychords[] = {
   /* function keys  */
@@ -80,21 +80,24 @@ static Keychord keychords[] = {
 	{1, {{ 0,                            XK_F12 }},    spawn,          SHCMD("slock")},
 
   /* Key chords */
+	{2, {{ MODKEY, XK_backslash }, { 0, XK_h }},      spawn,          SHCMD("get-help")},
 	{2, {{ MODKEY, XK_backslash }, { 0, XK_w }},      spawn,          SHCMD("wifi")},
 	{2, {{ MODKEY, XK_backslash }, { 0, XK_b }},      spawn,          SHCMD("bluetooth")},
-	{2, {{ MODKEY, XK_backslash }, { 0, XK_c }},      spawn,          SHCMD("saveclip -s")},
+  {2, {{ MODKEY, XK_backslash }, { 0, XK_c }},      spawn,          SHCMD("saveclip -s")},
+	{2, {{ MODKEY, XK_backslash }, { 0, XK_v }},      spawn,          SHCMD("saveclip")},
+	{2, {{ MODKEY, XK_backslash }, { 0, XK_e }},      spawn,          SHCMD("emoji")},
+	{2, {{ MODKEY, XK_backslash }, { 0, XK_s }},      spawn,          SHCMD("screen")},
 
   /* layout chords */
-	{2, {{ MODKEY, XK_l },         { 0, XK_f }},      setlayout,      {.v = &layouts[1]} },
+	{2, {{ MODKEY, XK_l },         { 0, XK_x }},      setlayout,      {.v = &layouts[1]} },
 	{2, {{ MODKEY, XK_l },         { 0, XK_m }},      setlayout,      {.v = &layouts[2]} },
 	{2, {{ MODKEY, XK_l },         { 0, XK_t }},      setlayout,      {.v = &layouts[0]} },
-	{2, {{ MODKEY, XK_l },         { 0, XK_x }},  	  togglefloating, {0} },
+	{2, {{ MODKEY, XK_l },         { 0, XK_f }},  	  togglefloating, {0} },
 	{2, {{ MODKEY, XK_l },         { 0, XK_h }},      incnmaster,     {.i = -1 } },
 	{2, {{ MODKEY, XK_l },         { 0, XK_v }},      incnmaster,     {.i = +1 } },
 
 	{1, {{ MODKEY,                 XK_g  }},          togglebar,      {0} },
 	{1, {{ Mod1Mask,               XK_Tab  }},	      zoom,           {0} },
-  {1, {{ MODKEY,                 XK_d  }},          setmfact,       {.f = -0.05} },
 	{1, {{ MODKEY,		             XK_q  }},          killclient,     {0} },
 
 	{1, {{ MODKEY,                 XK_space }},       spawn,          {.v = dmenucmd } },
@@ -104,7 +107,8 @@ static Keychord keychords[] = {
 	{1, {{ MODKEY,                 XK_Left }},        focusstack,     {.i = -1 } },
 	{1, {{ MODKEY,                 XK_Right }},       focusstack,     {.i = +1 } },
 	{1, {{ MODKEY,			           XK_Return }},      spawn,          {.v = termcmd } },
-	{1, {{ MODKEY|ShiftMask,			 XK_Return }},      spawn,          {.v = browsercmd } },
+	{1, {{ MODKEY|ControlMask,		 XK_Return }},      spawn,          SHCMD("chromium --profile-directory='Profile 2' youtube.com")},
+	{1, {{ MODKEY|ShiftMask,		   XK_Return }},      spawn,          SHCMD("chromium --profile-directory='Default'")},
 	{1, {{ MODKEY,                 XK_Tab }},         view,           {0} },
 
 	{1, {{ MODKEY,                 XK_0 }},           view,           {.ui = ~0 } },
