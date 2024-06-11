@@ -87,6 +87,7 @@ static Keychord keychords[] = {
 	{2, {{ MODKEY, XK_backslash }, { 0, XK_v }},      spawn,          SHCMD("saveclip")},
 	{2, {{ MODKEY, XK_backslash }, { 0, XK_e }},      spawn,          SHCMD("emoji")},
 	{2, {{ MODKEY, XK_backslash }, { 0, XK_s }},      spawn,          SHCMD("screen")},
+	{2, {{ MODKEY, XK_backslash }, { 0, XK_q }},      spawn,          SHCMD("quitdwm")},
 
   /* layout chords */
 	{2, {{ MODKEY, XK_l },         { 0, XK_x }},      setlayout,      {.v = &layouts[1]} },
