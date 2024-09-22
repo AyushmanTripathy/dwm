@@ -44,9 +44,9 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
+	{ "[M]",      monocle },
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle },
 };
 
 /* key definitions */
@@ -90,9 +90,9 @@ static Keychord keychords[] = {
 	{2, {{ MODKEY, XK_backslash }, { 0, XK_q }},      spawn,          SHCMD("quitdwm")},
 
   /* layout chords */
-	{2, {{ MODKEY, XK_l },         { 0, XK_x }},      setlayout,      {.v = &layouts[1]} },
-	{2, {{ MODKEY, XK_l },         { 0, XK_m }},      setlayout,      {.v = &layouts[2]} },
-	{2, {{ MODKEY, XK_l },         { 0, XK_t }},      setlayout,      {.v = &layouts[0]} },
+	{2, {{ MODKEY, XK_l },         { 0, XK_x }},      setlayout,      {.v = &layouts[2]} },
+	{2, {{ MODKEY, XK_l },         { 0, XK_m }},      setlayout,      {.v = &layouts[0]} },
+	{2, {{ MODKEY, XK_l },         { 0, XK_t }},      setlayout,      {.v = &layouts[1]} },
 	{2, {{ MODKEY, XK_l },         { 0, XK_f }},  	  togglefloating, {0} },
 	{2, {{ MODKEY, XK_l },         { 0, XK_h }},      incnmaster,     {.i = -1 } },
 	{2, {{ MODKEY, XK_l },         { 0, XK_v }},      incnmaster,     {.i = +1 } },
