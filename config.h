@@ -89,6 +89,9 @@ static Keychord keychords[] = {
 	{2, {{ MODKEY, XK_backslash }, { 0, XK_s }},      spawn,          SHCMD("screen")},
 	{2, {{ MODKEY, XK_backslash }, { 0, XK_q }},      spawn,          SHCMD("quitdwm")},
 
+  /* navigations keys */
+	{1, {{ MODKEY,                 XK_h }},   focusmon,       {.i = 0}},
+
   /* layout chords */
 	{2, {{ MODKEY, XK_l },         { 0, XK_x }},      setlayout,      {.v = &layouts[2]} },
 	{2, {{ MODKEY, XK_l },         { 0, XK_m }},      setlayout,      {.v = &layouts[0]} },
