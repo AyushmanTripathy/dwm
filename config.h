@@ -22,14 +22,14 @@ static char *colors[][3] = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5" };
+static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class                instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
-	{ "TelegramDesktop",    NULL,     NULL,           0,         0,          0,           0,        -1 },
+	{ "TelegramDesktop",    NULL,     NULL,           1 << 3,    0,          0,           0,        -1 },
 	{ "obs",                NULL,     NULL,           0,         1,          0,           0,        -1 },
 	{ "Lutris",             NULL,     NULL,           0,         1,          0,           0,        -1 },
 	{ "firefox",   		      NULL,     NULL,           1 << 2,    0,          0,          -1,        -1 },
@@ -52,9 +52,10 @@ static const Layout layouts[] = {
 /* key definitions */
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG)												\
-	{1, {{MODKEY, KEY}},								view,           {.ui = 1 << TAG} },	\
-	{1, {{MODKEY|ControlMask, KEY}},					toggleview,     {.ui = 1 << TAG} }, \
-	{1, {{MODKEY|ShiftMask, KEY}},						tag,            {.ui = 1 << TAG} }, \
+	{2, {{MODKEY, XK_s},  {0, KEY}},				        view,           {.ui = 1 << TAG} },	\
+	{1, {{MODKEY, KEY}},				                    view,           {.ui = 1 << TAG} },	\
+	{1, {{MODKEY|ControlMask, KEY}},					      toggleview,     {.ui = 1 << TAG} }, \
+	{1, {{MODKEY|ShiftMask, KEY}},						      tag,            {.ui = 1 << TAG} }, \
 	{1, {{MODKEY|ControlMask|ShiftMask, KEY}},			toggletag,      {.ui = 1 << TAG} },
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
@@ -65,7 +66,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont};
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *browsercmd[]  = { "chromium", NULL };
-   
+
 static Keychord keychords[] = {
   /* function keys  */
  	{1, {{ 0,                            XK_F1 }},     spawn,          SHCMD("get-info")},
@@ -77,7 +78,7 @@ static Keychord keychords[] = {
 	{1, {{ 0,                            XK_F8 }},     spawn,          SHCMD("volume -i")},
 	{1, {{ 0,                            XK_F9 }},     spawn,          SHCMD("moc -n")},
 	{1, {{ 0,                            XK_F10 }},    spawn,          SHCMD("moc -p")},
-	{1, {{ 0,                            XK_F12 }},    spawn,          SHCMD("slock")},
+	{1, {{ 0,                            XK_F12 }},    spawn,          SHCMD("microphone -t")},
 
   /* Key chords */
 	{2, {{ MODKEY, XK_backslash }, { 0, XK_h }},      spawn,          SHCMD("get-help")},
@@ -124,6 +125,9 @@ static Keychord keychords[] = {
 	{1, {{ MODKEY,			           XK_equal }},       setgaps,	      {.i = +1 } },
 	{1, {{ MODKEY|ShiftMask,		   XK_equal }},       setgaps,	      {.i =  0 } },
 	{1, {{ MODKEY,                 XK_F5 }},          xrdb,           {.v = NULL } },
+
+	{1, {{ MODKEY,              XK_bracketleft  }},           view_adjacent,  { .i = -1 } },
+	{1, {{ MODKEY,              XK_bracketright }},           view_adjacent,  { .i = +1 } },
 
   /* Tag keys */
 	TAGKEYS(                       XK_1,                      0)
