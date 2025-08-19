@@ -80,6 +80,8 @@ static Keychord keychords[] = {
 	{1, {{ 0,                            XK_F10 }},    spawn,          SHCMD("moc -p")},
 	{1, {{ 0,                            XK_F12 }},    spawn,          SHCMD("microphone -t")},
 
+	{1, {{ MODKEY,                       XK_a   }},    spawn,          SHCMD("volume -t")},
+
   /* Key chords */
 	{2, {{ MODKEY, XK_backslash }, { 0, XK_h }},      spawn,          SHCMD("get-help")},
 	{2, {{ MODKEY, XK_backslash }, { 0, XK_w }},      spawn,          SHCMD("wifi")},
@@ -89,6 +91,7 @@ static Keychord keychords[] = {
 	{2, {{ MODKEY, XK_backslash }, { 0, XK_e }},      spawn,          SHCMD("emoji")},
 	{2, {{ MODKEY, XK_backslash }, { 0, XK_s }},      spawn,          SHCMD("screen")},
 	{2, {{ MODKEY, XK_backslash }, { 0, XK_q }},      spawn,          SHCMD("quitdwm")},
+	{2, {{ MODKEY, XK_backslash }, { 0, XK_a }},      spawn,          SHCMD("volume -s")},
 
   /* navigations keys */
 	{1, {{ MODKEY,                 XK_h }},   focusmon,       {.i = 0}},
