@@ -1,4 +1,5 @@
 /* See LICENSE file for copyright and license details. */
+#include <X11/XF86keysym.h>
 
 /* appearance */
 static const unsigned int borderpx  = 3;        /* border pixel of windows */
@@ -70,8 +71,8 @@ static const char *browsercmd[]  = { "chromium", NULL };
 static Keychord keychords[] = {
   /* function keys  */
  	{1, {{ 0,                            XK_F1 }},     spawn,          SHCMD("get-info")},
-	{1, {{ 0,                            XK_F2 }},     spawn,          SHCMD("brightness -d 100")},
-	{1, {{ 0,                            XK_F3 }},     spawn,          SHCMD("brightness -i 100")},
+	{1, {{ 0,                            XK_F2 }},     spawn,          SHCMD("brightness -d 1")},
+	{1, {{ 0,                            XK_F3 }},     spawn,          SHCMD("brightness -i 1")},
 	{1, {{ 0,                            XK_F4 }},     spawn,          SHCMD("screen -f")},
 	{1, {{ 0,                            XK_F6 }},     spawn,          SHCMD("volume -m")},
 	{1, {{ 0,                            XK_F7 }},     spawn,          SHCMD("volume -d")},
@@ -80,11 +81,23 @@ static Keychord keychords[] = {
 	{1, {{ 0,                            XK_F10 }},    spawn,          SHCMD("moc -p")},
 	{1, {{ 0,                            XK_F12 }},    spawn,          SHCMD("microphone -t")},
 
-	{1, {{ MODKEY,                       XK_a   }},    spawn,          SHCMD("volume -t")},
+  /* action keys */
+ 	{1, {{ 0,                            XF86XK_Display }},             spawn,          SHCMD("get-info")},
+	{1, {{ 0,                            XF86XK_MonBrightnessDown }},   spawn,          SHCMD("brightness -d 1")},
+	{1, {{ 0,                            XF86XK_MonBrightnessUp }},     spawn,          SHCMD("brightness -i 1")},
+	{1, {{ 0,                            XK_Print }},                   spawn,          SHCMD("screen -f")},
+	{1, {{ 0,                            XF86XK_AudioMute }},           spawn,          SHCMD("volume -m")},
+	{1, {{ 0,                            XF86XK_AudioLowerVolume }},    spawn,          SHCMD("volume -d")},
+	{1, {{ 0,                            XF86XK_AudioRaiseVolume }},    spawn,          SHCMD("volume -i")},
+	//{1, {{ 0,                            XK_F9 }},     spawn,         SHCMD("moc -n")},
+	//{1, {{ 0,                            XK_F10 }},    spawn,         SHCMD("moc -p")},
+	{1, {{ 0,                            XF86XK_AudioMicMute }},        spawn,          SHCMD("microphone -t")},
+
+	{1, {{ MODKEY,                       XK_a   }},                     spawn,          SHCMD("volume -t")},
 
   /* Key chords */
 	{2, {{ MODKEY, XK_backslash }, { 0, XK_h }},      spawn,          SHCMD("get-help")},
-	{2, {{ MODKEY, XK_backslash }, { 0, XK_w }},      spawn,          SHCMD("wifi")},
+	{2, {{ MODKEY, XK_backslash }, { 0, XK_w }},      spawn,          SHCMD("wifix")},
 	{2, {{ MODKEY, XK_backslash }, { 0, XK_b }},      spawn,          SHCMD("bluetooth")},
   {2, {{ MODKEY, XK_backslash }, { 0, XK_c }},      spawn,          SHCMD("saveclip -s")},
 	{2, {{ MODKEY, XK_backslash }, { 0, XK_v }},      spawn,          SHCMD("saveclip")},
@@ -92,6 +105,17 @@ static Keychord keychords[] = {
 	{2, {{ MODKEY, XK_backslash }, { 0, XK_s }},      spawn,          SHCMD("screen")},
 	{2, {{ MODKEY, XK_backslash }, { 0, XK_q }},      spawn,          SHCMD("quitdwm")},
 	{2, {{ MODKEY, XK_backslash }, { 0, XK_a }},      spawn,          SHCMD("volume -s")},
+
+  /* x alternatives to backslash */
+	{2, {{ MODKEY, XK_x }, { 0, XK_h }},      spawn,          SHCMD("get-help")},
+	{2, {{ MODKEY, XK_x }, { 0, XK_w }},      spawn,          SHCMD("wifix")},
+	{2, {{ MODKEY, XK_x }, { 0, XK_b }},      spawn,          SHCMD("bluetooth")},
+  {2, {{ MODKEY, XK_x }, { 0, XK_c }},      spawn,          SHCMD("saveclip -s")},
+	{2, {{ MODKEY, XK_x }, { 0, XK_v }},      spawn,          SHCMD("saveclip")},
+	{2, {{ MODKEY, XK_x }, { 0, XK_e }},      spawn,          SHCMD("emoji")},
+	{2, {{ MODKEY, XK_x }, { 0, XK_s }},      spawn,          SHCMD("screen")},
+	{2, {{ MODKEY, XK_x }, { 0, XK_q }},      spawn,          SHCMD("quitdwm")},
+	{2, {{ MODKEY, XK_x }, { 0, XK_a }},      spawn,          SHCMD("volume -s")},
 
   /* navigations keys */
 	{1, {{ MODKEY,                 XK_h }},   focusmon,       {.i = 0}},
