@@ -94,6 +94,7 @@ static Keychord keychords[] = {
 	{1, {{ 0,                            XF86XK_AudioMicMute }},        spawn,          SHCMD("microphone -t")},
 
 	{1, {{ MODKEY,                       XK_a   }},                     spawn,          SHCMD("volume -t")},
+	{1, {{ MODKEY,                       XK_r   }},                     spawn,          SHCMD("update-dwmblocks")},
 
   /* Key chords */
 	{2, {{ MODKEY, XK_backslash }, { 0, XK_h }},      spawn,          SHCMD("get-help")},
